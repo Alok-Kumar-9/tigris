@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{>bootstrapcss}}
+    <link rel="stylesheet" href="styles/userregcss.css">
+    <link rel="icon" href="favicon.png" type="image/png"/>
+    <title>Tigris</title>
+</head>
+<body>
+    {{>navbars}}
+
+    <div class="container" style="min-height: 50vh; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+        <div class="row my-3">
+            <div class="col">
+                <button class="btn btn-outline-warning" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBackdrop" aria-controls="offcanvasWithBackdrop">Your Rooms</button>
+            </div>
+        </div>
+        <div class="row my-3">
+            <div class="col">
+                <form action="/createroomrequest" method="post">
+                <input type="hidden" name="admin" value="{{user}}">
+                    <button class="btn btn-outline-warning" type="submit">
+                        Create New Chat Room
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="row my-3">
+            <div class="col">
+                <form action="/joinroomrequest" method="post">
+                <input type="hidden" name="user" value="{{user}}">
+                    <button class="btn btn-outline-warning" type="submit">
+                        Join Room
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasWithBackdrop" aria-labelledby="offcanvasWithBackdropLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasWithBackdropLabel">Rooms created by <span style="color: red">{{user}}</span></h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    {{#each madeRooms as | room |}}
+            <div class="row m-3">
+                <div class="col-2" style="overflow: hidden;">👽</div>
+                <div class="col-5" style="overflow: hidden;"><span style="font-size: 18px; color:blue; "><b>{{ room }}</b></span></div>
+                <div class="col-4">
+                    <form action="/joinroom" method="POST" class="form-join">
+                        <input type="hidden" class="user" name="user" />
+                        <input type="hidden" id="room" name="room" value="{{room}}" />
+                        <input type="hidden" class="admin" name="admin" />
+                        <button class="btn btn-light submitBtn form-control form-control-lg" type="submit"><b>Join</b></button>
+                    </form>
+                </div>
+                <div class="col-1"><button class="btn btn-primary d-none" type="submit">Delete</button></div>
+            </div>
+    {{/each}}
+  </div>
+</div>
+{{>footer}}
+{{>bootstrapjs}}
+<script>
+    let user = "{{ user }}" ;
+    $(document).ready(function() {
+        $(".user").val("{{ user }}");
+        $(".admin").val("{{ user }}");
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{>bootstrapcss}}
+    <link rel="stylesheet" href="styles/userregcss.css">
+    <link rel="icon" href="favicon.png" type="image/png"/>
+    <title>Tigris</title>
+</head>
+<body>
+    {{>navbars}}
+    <div class="container my-3">
+        <form action="/newroomrequest" method="POST">
+            <div class="row mb-3">
+                <label for="roomname" class="col-sm-2 col-form-label">Name:</label>
+                <div class="col-sm-10 input-group">
+                    <input type="text" class="form-control" id="roomname" name="room">
+                    <div class="input-group-text d-none" id="roomtick"></div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="administratorinfo" class="col-sm-2 col-form-label">Admin:</label>
+                <div class="col-sm-10 input-group">
+                    <input type="text" class="form-control" id="administratorinfo" name="admin" value="{{admin}}" readonly />
+                    <div class="input-group-text" id="tick">@</div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-outline-dark form-control form-control-lg">Create</button>
+        </form>
+    </div>
+    {{>footer}}
+    {{>bootstrapjs}}
+    <script>
+        $(document).ready(function() {
+            $("#administratorinfo").val = "{{admin}}";
+            
+            $("#roomname").on("focus", function() {
+                let uud = document.getElementById("roomtick");
+                uud.classList.add("d-none");
+            });
+
+            $('#roomname').on("blur", function() {
+                let data1 = $("#roomname").val();
+                let data2 = $("#administratorinfo").val();
+                if(data1)
+                {
+                    data1 = data1.trim();
+                    $.ajax({
+                        url: "/validateRoom",
+                        method: "POST",
+                        dataType: "json",
+                        data: {
+                            room: data1 ,
+                            admin: data2
+                        },
+                        success: function(response) {
+                            if(response.msg == "success")
+                            {
+                                $("#roomtick").html("<strong>✔️</strong>");
+                                document.getElementById("roomtick").classList.remove("d-none");
+                                document.getElementById("roomname").classList.remove("notAvailable");
+                                $("#roomname").addClass("available");
+                                $("button").attr("disabled", false);
+                            } else {
+                                $("#roomtick").html("<strong>⚠️</strong>");
+                                document.getElementById("roomtick").classList.remove("d-none");
+                                document.getElementById("roomname").classList.remove("available");
+                                $("#roomname").addClass("notAvailable");
+                                $("button").attr("disabled", true);
+                            }
+                        },
+                        error: function(response) {
+                            alert("Error");
+                        }
+                        });
+                    
+                } else {
+                    document.getElementById("roomname").classList.remove("available", "notAvailable");
+                    document.getElementById("roomtick").classList.add("d-none");
+                }
+            });
+
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{>bootstrapcss}}
+    <link rel="stylesheet" href="styles/userregcss.css">
+    <link rel="icon" href="favicon.png" type="image/png"/>
+    <title>Tigris</title>
+</head>
+<body>
+    <div class="main-part">
+        <h3 style="text-align:center">You are successfully registered!!</h3>
+        <h5 style="text-align:center">Thank You for choosing <b>Tigris</b></h5>
+        <hr />
+        <a href="/" type="button" class="btn btn-outline-success">GO TO LOGIN PAGE</a>
+    </div>
+    {{>footer}}
+    {{>bootstrapjs}}
+</body>
+<style>
+    .main-part {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 90vh;
+    }
+</style>
+</html>

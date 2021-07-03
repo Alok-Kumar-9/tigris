@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{>bootstrapcss}}
+    <link rel="stylesheet" href="styles/userregcss.css">
+    <link rel="icon" href="favicon.png" type="image/png"/>
+    <title>Tigris</title>
+</head>
+<body>
+    <div class="container container1 my-4 mx-0 p-2">
+        <div class="row">
+            <div class="col-md-7 col-sm-1"></div>
+            <div class="col-md-4 col-sm-10 my-5 container2">
+                <form action="/register" method="POST">
+                        <div class="my-n3" id="checkFor">
+                            <label for="namee"></label>
+                            <div class="input-group">
+                                <input type="text" id="namee" class="form-control form-control-lg" name="name" placeholder="Enter Your Name" autocomplete="off" required="required" value="">
+                                <div class="input-group-text d-none" id="tick"></div>
+                            </div>
+                            <span id="emailHelp" class="form-text d-none"></span>
+                        </div>
+                        <div class="my-n3">
+                            <label for="usernamee"></label>
+                            <div class="input-group">
+                                <input type="text" id="usernamee" class="form-control form-control-lg" name="username" placeholder="Enter Your Username" value="" autocomplete="off" required="required">
+                                <div class="input-group-text d-none" id="usernametick"></div>
+                            </div>
+                        </div>
+                        <div class="my-n3">
+                            <label for="emaill"></label>
+                            <div class="input-group">
+                                <input type="email" id="emaill" class="form-control form-control-lg" name="email" placeholder="Enter Your Email" autocomplete="off" required="required">
+                                <div class="input-group-text d-none" id="emailtick"></div>
+                            </div>
+                        </div>
+                        <div class="my-n3">
+                            <label for="passwordd"></label>
+                            <input type="password" id="passwordd" class="form-control form-control-lg" name="password" placeholder="Enter Your Password" autocomplete="off" required="required">
+                        </div>
+                        <div class="my-n3">
+                            <label for="phonee"></label>
+                            <div class="input-group">
+                                <input type="number" id="phonee" class="form-control form-control-lg" name="phone" placeholder="Enter your phone number" autocomplete="off" required="required">
+                                <div class="input-group-text d-none" id="phonetick"></div>
+                            </div>
+                        </div>
+                        <div class="my-n3">
+                            <label for="dobb"></label>
+                            <input type="date" id="dobb" class="form-control form-control-lg" name="dob" placeholder="DD/MM/YYYY" autocomplete="off" required="required">
+                        </div>
+                        <div class="my-n3">
+                            <label for="sexx"></label>
+                            <select id="sexx" name="sex" class="form-select form-control form-control-lg" required="required">
+                                <option selected>Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="others">Others</option>
+                            </select>
+                        </div>
+                        <div class="mt-5 mb-1 py-3">
+                            <button class="btn btn-group-lg btn-outline-primary form-control form-control-lg" type="submit">Signup</button>
+                        </div>
+                </form>
+            </div>
+            <div class="col-1"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-7"></div>
+            <div class="col-md-4 col-10 container-signup">
+                <h5 style="text-align:center"><span style="color: #DEAB3F;">Already On Tigris??</span></h5>
+                <a href="/" type="button" class="btn btn-group-lg btn-outline-dark form-control form-control-lg">Login here</a>
+            </div>
+        </div>
+    </div>
+    {{>footer}}
+    {{>bootstrapjs}}
+    <script src="js/reguser.js"></script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{>bootstrapcss}}
+    <link rel="stylesheet" href="styles/userregcss.css">
+    <link rel="icon" href="favicon.png" type="image/png"/>
+    <title>Tigris</title>
+</head>
+<body>
+    {{>navbars}}
+    <div class="container my-3">
+        <form action="/joinroom" method="POST">
+            <div class="row mb-3">
+                <label for="userInfo" class="col-sm-2 col-form-label">Name:</label>
+                <div class="col-sm-10 input-group">
+                    <input type="text" class="form-control" id="userInfo" name="user" value="{{user}}" readonly />
+                    <div class="input-group-text" id="tick">🧍</div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="roomInfo" class="col-sm-2 col-form-label">Room:</label>
+                <div class="col-sm-10 input-group">
+                    <input type="text" class="form-control" id="roomInfo" name="room" />
+                    <div class="input-group-text">🚪</div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="adminInfo" class="col-sm-2 col-form-label">Admin:</label>
+                <div class="col-sm-10 input-group">
+                    <input type="text" class="form-control" id="adminInfo" name="admin">
+                    <div class="input-group-text">🛡️</div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-outline-dark form-control form-control-lg">Join</button>
+        </form>
+    </div>
+    {{>footer}}
+    {{>bootstrapjs}}
+</body>
+</html>

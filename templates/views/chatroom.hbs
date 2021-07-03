@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{>bootstrapcss}}
+    <link rel="stylesheet" href="styles/chatroomcss.css">
+    <link rel="icon" href="favicon.png" type="image/png"/>
+    <title>Tigris</title>
+</head>
+<body>
+    {{>navbars}}
+    <div class="main-section">
+        <div class="chat-room">
+            <div class="row brand">
+                <div class="col-1 m-1">
+                    <img src="tigris.jpeg" alt="Pic" height="50px" width="50px" />
+                </div>
+                <div class="col-md-4 col-9">
+                    <h1 style="font-size: 25px; padding: 13px;">{{room}}</h1>
+                </div>
+                <div class="col-md-2 col-9">
+                    <button class="btn btn-outline-warning detailBtn" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"
+                        style="margin-left: 40px;">Details</button>
+                </div>
+                <div class="col-md-2 col-9">
+                    <form action="/redirecthome" method="POST" id="leaveRoomAfter">
+                        <input type="hidden" name="user" value="{{ user }}" />
+                        <button class="btn btn-outline-info detailBtn" id="leaveRoomBtn" type="submit" style="margin-left: 40px;">Leave</button>
+                    </form>
+                </div>
+                <div class="col-md-2 col-9">
+                    <form action="/deleteroom" method="POST" id="callDeleteRoom">
+                        <input type="hidden" name="user" value="{{ user }}" />
+                        <input type="hidden" name="room" value="{{ room }}" />
+                        <button class="btn btn-outline-danger detailBtn d-none" id="deleteRoomBtn" type="submit" style="margin-left: 40px;">Delete</button>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="message_area">
+
+                </div>
+            </div>
+            <div class="row sendmsg">
+                <div class="col-md-9 col-6">
+                    <textarea name="msg" id="textarea" cols="30" rows="1" placeholder="Write a message..."
+                        autofocus="true"></textarea>
+                </div>
+                <div class="col-md-3 col-6">
+                    <button class="btn btn-primary buttonn" id="sendMsg" style="display:inline"
+                        type="submit">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasExampleLabel">ROOM DETAILS</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div>
+      <div class="row my-3 mx-1">
+         <h2> Name : {{room}} </h2>
+      </div>
+      <div class="row mx-1">
+          <h2> Admin: {{admin}} </h2>
+      </div>
+    </div>
+    <div class="dropdown mt-3">
+      <h3>Active Users</h3>
+      <ul id="actu">
+          {{#each activeUsers as |activeUser|}}
+          <li style="font-size: 20px;">{{activeUser}}</li>
+          {{/each}}
+      </ul>
+    </div>
+  </div>
+</div>
+
+    {{>footer}}
+    {{>bootstrapjs}}
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        let user = "{{user}}";
+        let roomId = "{{roomId}}";
+        let room = "{{room}}";
+        let admin = "{{admin}}";
+        let activeUsers = "{{ activeUsers }}";
+
+        if(user === admin)
+        {
+            $("#deleteRoomBtn").removeClass("d-none");
+        }
+
+    </script>
+    <script src="js/client.js"></script>
+</body>
+</html>

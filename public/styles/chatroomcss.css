@@ -1,0 +1,134 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  min-height: 100vh !important;
+  width: 100vw !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+  font-family: "Roboto", sans-serif;
+}
+
+nav {
+  display: block !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding-top: 2vh !important;
+  padding-bottom: 2vh !important;
+}
+
+.main-section {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center !important;
+  justify-content: center !important;
+  background: gainsboro;
+  overflow: auto;
+}
+
+.chat-room {
+  height: 80vh;
+  width: 70vw;
+  overflow: auto;
+  background: transparent;
+}
+
+.brand {
+  width: 70vw;
+  height: 10vh;
+  background-color: #919486;
+}
+
+.message_area {
+  width: 70vw;
+  height: 60vh !important;
+  overflow-y: auto;
+  background-color: white !important;
+  display: flex;
+  flex-direction: column;
+}
+
+.sendmsg {
+  width: 70vw;
+  height: 10vh;
+  overflow: hidden;
+  background-color: aqua;
+}
+
+.message {
+  max-width: 30vw;
+  padding: 15px;
+  background-color: silver;
+  position: relative;
+  margin: 30px;
+}
+
+.message h4 {
+  left: 0;
+  top: -20px;
+  position: absolute;
+  font-size: 18px;
+  color: #333;
+}
+
+.message p {
+  font-size: 16px;
+}
+
+.outgoing {
+  margin-left: auto;
+  background-color: lightgrey;
+}
+
+.incoming {
+  background-color: lightgreen;
+}
+
+#textarea {
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 10px;
+  margin-top: 5px;
+  margin-left: 5px;
+  overflow-y: auto;
+}
+
+.buttonn {
+  margin: 5px;
+  width: 100%;
+}
+
+.detailBtn {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 2px;
+  width: 100%;
+}
+
+.footer {
+  background-color: #22f3aa;
+  height: 60px;
+  width: 100%;
+  margin-top: auto;
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

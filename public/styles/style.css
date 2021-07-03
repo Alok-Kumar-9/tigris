@@ -1,0 +1,53 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: red;
+}
+
+.container1 {
+  margin-top: 25%;
+  margin-bottom: 25%;
+  margin-left: 15%;
+  word-wrap: break-word;
+}
+
+#fblogo {
+  color: blueviolet;
+  font-size: 60px;
+}
+
+#infoFb {
+  font-size: 20px;
+  color: black;
+}
+
+.container2 {
+  background-color: whitesmoke;
+  padding: 30px;
+  margin-top: 25%;
+  margin-bottom: 25%;
+  box-shadow: 3px 3px 9px #888888;
+  border-radius: 5px;
+}
+
+#createAc {
+  padding: 10px;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  text-justify: auto;
+}
+
+.container {
+  position: fixed;
+  margin-top: 15%;
+  margin-left: 25%;
+  margin-right: 25%;
+  margin-bottom: 15%;
+  padding: 10px;
+}
+
+p {
+  text-align: center;
+  font-size: x-large;
+}

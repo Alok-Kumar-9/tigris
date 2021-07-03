@@ -1,0 +1,212 @@
+
+<script>
+ $('document').ready(function() {
+
+//  $("#namee").on("keyup", function() {
+//    let detaa = $("#namee").val();
+//    detaa = detaa.trim();
+//    let dataa = detaa.toUpperCase();
+//    $.ajax({
+//      url: "/checkName" ,
+//      method: "POST",
+//      dataType: "json",
+//      data: {name: dataa},
+//      success: function(response) {
+//        if(response.msg == "success")
+//        {
+//          console.log(response.msg);
+//          $("#tick").html("<strong>✔️</strong>");
+          //let ii = document.createElement("i");
+          //ii.classList.add("fas", "fas-exclamation-triangle");
+          //$("#usernametick").append(ii);
+//          $("#tick").addClass("d-inline");
+//          $("button").attr("disabled", false);
+//        } else{
+//          console.log(response.msg);
+//          $("#tick").html("<strong>⚠️</strong>");
+//          $("#tick").addClass("d-inline");
+//          $("button").attr("disabled", true);
+          //$("emailHelp").html("Invalid");
+          //$("#emailHelp").addClass("d-block");
+//        }
+//      },
+//      error: function(response) {
+//        alert("Error");
+//      }
+//    });
+//  });
+
+ $("button").attr("disabled", true);
+
+let flag1 = 0 ;
+let flag2 = 0 ;
+let flag3 = 0 ;
+
+  $("#usernamee").on("focus", function() {
+    let uud = document.getElementById("usernametick");
+    if(uud.classList.contains("d-inline"))
+    {
+      uud.classList.remove("d-inline");
+      uud.classList.add("d-none");
+    }
+  });
+
+  $("#usernamee").on("blur", function() {
+    let detaa = $("#usernamee").val();
+    if(detaa)
+    {
+      let dataa = detaa.trim();
+    $.ajax({
+      url: "/checkUserName" ,
+      method: "POST",
+      dataType: "json",
+      data: {username: dataa},
+      success: function(response) {
+        if(response.msg == "success")
+        {
+          console.log(response.msg);
+          $("#usernametick").html("<strong>✔️</strong>");
+          //let ii = document.createElement("i");
+          //ii.classList.add("fas", "fas-exclamation-triangle");
+          //$("#usernametick").append(ii);
+          $("#usernametick").addClass("d-inline");
+          flag1 = 1 ;
+          if(flag1 == 1 && flag2 == 1 && flag3 == 1)
+          {
+            $("button").attr("disabled", false);
+          }
+          document.getElementById("usernamee").classList.remove("notAvailable");
+          $("#usernamee").addClass("available");
+        } else{
+          console.log(response.msg);
+          $("#usernametick").html("<strong>⚠️</strong>");
+          $("#usernametick").addClass("d-inline");
+          $("button").attr("disabled", true);
+          flag1 = 0 ;
+          //$("emailHelp").html("Invalid");
+          //$("#emailHelp").addClass("d-block");
+          document.getElementById("usernamee").classList.remove("available");
+          $("#usernamee").addClass("notAvailable");
+        }
+      },
+      error: function(response) {
+        alert("Error");
+      }
+    });
+    } else {
+      console.log("ofoo!!!!");
+      document.getElementById("usernamee").classList.remove("available", "notAvailable");
+      document.getElementById("usernametick").classList.remove("d-inline");
+      document.getElementById("usernametick").classList.add("d-none");
+    }
+  });
+
+  $("#emaill").on("focus", function() {
+    let uud = document.getElementById("emailtick");
+    if(uud.classList.contains("d-inline"))
+    {
+      uud.classList.remove("d-inline");
+      uud.classList.add("d-none");
+    }
+  });
+
+  $("#emaill").on("blur", function() {
+    let detaa = $("#emaill").val();
+    if(detaa)
+    {
+      detaa = detaa.toLowerCase();
+    let dataa = detaa.trim();
+    $.ajax({
+      url: "/checkEmail" ,
+      method: "POST",
+      dataType: "json",
+      data: {email: dataa},
+      success: function(response) {
+        if(response.msg == "success")
+        {
+          console.log(response.msg);
+          $("#emailtick").html("<strong>✔️</strong>");
+          $("#emailtick").addClass("d-inline");
+          flag2 = 1 ;
+          if(flag1 == 1 && flag2 == 1 && flag3 == 1)
+          {
+            $("button").attr("disabled", false);
+          }
+          document.getElementById("emaill").classList.remove("notAvailable");
+          $("#emaill").addClass("available");
+        } else{
+          console.log(response.msg);
+          $("#emailtick").html("<strong>⚠️</strong>");
+          $("#emailtick").addClass("d-inline");
+          $("button").attr("disabled", true);
+          flag2 = 0;
+          document.getElementById("emaill").classList.remove("available");
+          $("#emaill").addClass("notAvailable");
+        }
+      },
+      error: function(response) {
+        alert("Error");
+      }
+    });
+    } else {
+      document.getElementById("emaill").classList.remove("available", "notAvailable");
+      document.getElementById("emailtick").classList.remove("d-inline");
+      document.getElementById("emailtick").classList.add("d-none");
+    }
+  });
+
+  $("#phonee").on("focus", function() {
+    let uud = document.getElementById("phonetick");
+    if(uud.classList.contains("d-inline"))
+    {
+      uud.classList.remove("d-inline");
+      uud.classList.add("d-none");
+    }
+  });
+
+  $("#phonee").on("blur", function() {
+    let dataa = $("#phonee").val();
+    if(dataa)
+    {
+      $.ajax({
+      url: "/checkPhone" ,
+      method: "POST",
+      dataType: "json",
+      data: {phone: dataa},
+      success: function(response) {
+        if(response.msg == "success")
+        {
+          console.log(response.msg);
+          $("#phonetick").html("<strong>✔️</strong>");
+          $("#phonetick").addClass("d-inline");
+          flag3 = 1 ;
+          if(flag1 == 1 && flag2 == 1 && flag3 == 1)
+          {
+            $("button").attr("disabled", false);
+          }
+          document.getElementById("phonee").classList.remove("notAvailable");
+          $("#phonee").addClass("available");
+        } else{
+          console.log(response.msg);
+          $("#phonetick").html("<strong>⚠️</strong>");
+          $("#phonetick").addClass("d-inline");
+          $("button").attr("disabled", true);
+          flag3 = 0 ;
+          document.getElementById("phonee").classList.remove("available");
+          $("#phonee").addClass("notAvailable");
+        }
+      },
+      error: function(response) {
+        alert("Error");
+      }
+    });
+    } else {
+      document.getElementById("phonee").classList.remove("available", "notAvailable");
+      document.getElementById("phonetick").classList.remove("d-inline");
+      document.getElementById("phonetick").classList.add("d-none");
+    }
+  });
+
+
+ });
+</script>
